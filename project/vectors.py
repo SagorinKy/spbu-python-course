@@ -1,7 +1,8 @@
 from math import acos
+from typing import List
 
 
-def vector_length(vector: list) -> float:
+def vector_length(vector: List) -> float:
     """Calculates vector's length by formulae ((x_1)^2 + ... + (x_n)^2)^0.5"""
     length_squared = 0
     for element in vector:
@@ -9,7 +10,7 @@ def vector_length(vector: list) -> float:
     return length_squared**0.5
 
 
-def scalar_product(vector_1: list, vector_2: list) -> float:
+def scalar_product(vector_1: List, vector_2: List) -> float:
     """
     Calculates scalar product of two vectors
     If one is longer than another one we assume all missing elements are 0
@@ -21,7 +22,7 @@ def scalar_product(vector_1: list, vector_2: list) -> float:
     return result
 
 
-def angle_between_vectors(vector_1: list, vector_2: list) -> float:
+def angle_between_vectors(vector_1: List, vector_2: List) -> float:
     """
     Calculates angle between vectors by formulae
     angle = arccos(scalar product / product of vector length)
