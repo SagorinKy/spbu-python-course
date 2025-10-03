@@ -64,4 +64,4 @@ jobs:
           mypy .
       - name: Run pytest
         run: |
-          pytest --maxfail=1
+          python ./scripts/run_tests.py --maxfail=1
