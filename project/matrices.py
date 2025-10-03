@@ -3,7 +3,15 @@ from typing import List
 
 
 def matrices_sum(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
-    """Adds to the elements of first matrix values from the corresponding elements of second one"""
+    """
+    Adds to the elements of first matrix values from the corresponding elements of second one
+
+    Parameters:
+        matrix_1 (List[List]): first matrix
+        matrix_2 (List[List]): second matrix
+    Returns:
+        List[List]: matrix that is sum of two matrix
+    """
 
     for i in range(min(len(matrix_1), len(matrix_2))):
         for j in range(min(len(matrix_1[i]), len(matrix_2[i]))):
@@ -16,6 +24,12 @@ def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
     if raw number of first matrix is equal to line number in second matrix
     return their product
     otherwise returns None
+
+    Parameters:
+        matrix_1 (List[List]): first matrix
+        matrix_2 (List[List]): second matrix
+    Returns:
+        List[List]: matrix that is product of two matrix
     """
     result_matrix: List[List] = []
     if len(matrix_1[0]) == len(matrix_2):
@@ -29,5 +43,13 @@ def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
 
 
 def transpose(matrix: List[List]) -> List[List]:
-    """Transpose a matrix"""
+    """
+    Transpose a matrix
+
+
+    Parameters:
+        matrix (List[List]): matrix
+    Returns:
+        List[List]: tranposed matrix
+    """
     return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]

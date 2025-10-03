@@ -3,7 +3,14 @@ from typing import List
 
 
 def vector_length(vector: List) -> float:
-    """Calculates vector's length by formulae ((x_1)^2 + ... + (x_n)^2)^0.5"""
+    """
+    Calculates vector's length by formulae ((x_1)^2 + ... + (x_n)^2)^0.5
+
+    Parameters:
+        vector (List): vector
+    Returns:
+        float: vector length
+    """
     length_squared = 0
     for element in vector:
         length_squared += element**2
@@ -14,6 +21,12 @@ def scalar_product(vector_1: List, vector_2: List) -> float:
     """
     Calculates scalar product of two vectors
     If one is longer than another one we assume all missing elements are 0
+
+    Parameters:
+        vector_1 (List): first vector
+        vector_2 (List): second vector
+    Returns:
+        float: scalar product
     """
 
     result = 0
@@ -26,6 +39,13 @@ def angle_between_vectors(vector_1: List, vector_2: List) -> float:
     """
     Calculates angle between vectors by formulae
     angle = arccos(scalar product / product of vector length)
+
+
+    Parameters:
+        vector_1 (List): first vector
+        vector_2 (List): second vector
+    Returns:
+        float: angle between vectors
     """
 
     cos = scalar_product(vector_1, vector_2) / (
