@@ -17,7 +17,7 @@ def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
     return their product
     otherwise returns None
     """
-    result_matrix = []
+    result_matrix: List[List] = []
     if len(matrix_1[0]) == len(matrix_2):
         for i in range(len(matrix_1)):
             result_matrix.append([])
@@ -25,7 +25,7 @@ def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
                 row = [matrix_2[l][j] for l in range(len(matrix_2))]
                 result_matrix[i].append(scalar_product(matrix_1[i], row))
         return result_matrix
-    return None
+    return [[]]
 
 
 def transpose(matrix: List[List]) -> List[List]:
