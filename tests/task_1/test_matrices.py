@@ -3,7 +3,7 @@ Test module for matrix operations.
 Contains unit tests for matrix functions: addition, multiplication, transposition.
 """
 import pytest
-import project.matrices as m
+import project.task_1.matrices as m
 
 
 def test_matrices_sum():

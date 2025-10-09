@@ -3,7 +3,7 @@ Test module for vector operations.
 Contains unit tests for matrix functions: addition, multiplication, transposition.
 """
 import pytest
-import project.vectors as v
+import project.task_1.vectors as v
 from math import acos
 
 
