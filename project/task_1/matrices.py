@@ -2,15 +2,17 @@ from .vectors import scalar_product
 from typing import List
 
 
-def matrices_sum(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
+def matrices_sum(
+    matrix_1: List[List[float]], matrix_2: List[List[float]]
+) -> List[List[float]]:
     """
     Adds to the elements of first matrix values from the corresponding elements of second one
 
     Parameters:
-        matrix_1 (List[List]): first matrix
-        matrix_2 (List[List]): second matrix
+        matrix_1 (List[List[float]]): first matrix
+        matrix_2 (List[List[float]]): second matrix
     Returns:
-        List[List]: matrix that is sum of two matrix
+        List[List[float]]: matrix that is sum of two matrix
     """
 
     for i in range(min(len(matrix_1), len(matrix_2))):
@@ -19,19 +21,21 @@ def matrices_sum(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
     return matrix_1
 
 
-def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
+def matrices_product(
+    matrix_1: List[List[float]], matrix_2: List[List[float]]
+) -> List[List[float]]:
     """
     if raw number of first matrix is equal to line number in second matrix
     return their product
     otherwise returns None
 
     Parameters:
-        matrix_1 (List[List]): first matrix
-        matrix_2 (List[List]): second matrix
+        matrix_1 (List[List[float]]): first matrix
+        matrix_2 (List[List[float]]): second matrix
     Returns:
         List[List]: matrix that is product of two matrix
     """
-    result_matrix: List[List] = []
+    result_matrix: List[List[float]] = []
     if len(matrix_1[0]) == len(matrix_2):
         for i in range(len(matrix_1)):
             result_matrix.append([])
@@ -42,14 +46,14 @@ def matrices_product(matrix_1: List[List], matrix_2: List[List]) -> List[List]:
     return [[]]
 
 
-def transpose(matrix: List[List]) -> List[List]:
+def transpose(matrix: List[List[float]]) -> List[List[float]]:
     """
     Transpose a matrix
 
 
     Parameters:
-        matrix (List[List]): matrix
+        matrix (List[List[float]]): matrix
     Returns:
-        List[List]: tranposed matrix
+        List[List[float]]: tranposed matrix
     """
     return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
