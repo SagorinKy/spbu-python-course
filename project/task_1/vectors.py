@@ -1,9 +1,9 @@
 from math import acos
 from typing import List
-from typing import Optional
+from typing import Union
 
 
-def vector_length(vector: List[Optional[float | int]]) -> float:
+def vector_length(vector: List[Union[float | int]]) -> float:
     """
     Calculates vector's length by formulae ((x_1)^2 + ... + (x_n)^2)^0.5
 
@@ -19,15 +19,15 @@ def vector_length(vector: List[Optional[float | int]]) -> float:
 
 
 def scalar_product(
-    vector_1: List[Optional[float | int]], vector_2: List[Optional[float | int]]
+    vector_1: List[Union[float | int]], vector_2: List[Union[float | int]]
 ) -> float:
     """
     Calculates scalar product of two vectors
     If one is longer than another one we assume all missing elements are 0
 
     Parameters:
-        vector_1 (List[Optional [float | int] ]): first vector
-        vector_2 (List[Optional [float | int] ]): second vector
+        vector_1 (List[Union [float | int] ]): first vector
+        vector_2 (List[Union [float | int] ]): second vector
     Returns:
         float | int: scalar product
     """
@@ -39,7 +39,7 @@ def scalar_product(
 
 
 def angle_between_vectors(
-    vector_1: List[Optional[float | int]], vector_2: List[Optional[float | int]]
+    vector_1: List[Union[float | int]], vector_2: List[Union[float | int]]
 ) -> float:
     """
     Calculates angle between vectors by formulae
@@ -47,8 +47,8 @@ def angle_between_vectors(
 
 
     Parameters:
-        vector_1 (List[Optional [float | int] ]): first vector
-        vector_2 (List[Optional [float | int] ]): second vector
+        vector_1 (List[Union [float | int] ]): first vector
+        vector_2 (List[Union [float | int] ]): second vector
     Returns:
         float | int: angle between vectors
     """
