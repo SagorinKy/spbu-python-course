@@ -54,9 +54,9 @@ def test_get_non_existing_key_returns_empty(empty_table):
 
 
 def test_delete_existing_key(filled_table):
+    assert filled_table["banana"] != []
     del filled_table["banana"]
-    with pytest.raises(KeyError):
-        _ = filled_table["banana"]
+    assert filled_table["banana"] == []
 
 
 def test_delete_non_existing_key_does_nothing(empty_table):

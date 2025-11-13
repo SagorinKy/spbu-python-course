@@ -3,7 +3,7 @@ from typing import Any, Optional, Generator, List
 
 
 class Node_For_Values:
-    def __init__(self, data, key):
+    def __init__(self, key, data):
         self.data: Any = data
         self.key: Any = key
         self.next: Optional["Node_For_Values"] = None
@@ -20,10 +20,10 @@ class Node_For_Hash:
         self.previous: Optional["Node_For_Hash"] = None
         self.length: int = 0
 
-    def find_value_node(self, data: Any, key: Any) -> Optional["Node_For_Values"]:
+    def find_value_node(self, key: Any, data: Any) -> Optional["Node_For_Values"]:
         node = self.data_head
         while node is not None:
-            if node.key == key & node.data == data:
+            if node.key == hash(key) & node.data == data:
                 return node
             node = node.next
         return None
@@ -33,10 +33,13 @@ class DoublyLinkedList(MutableMapping):
     def __init__(self) -> None:
         self.head: Optional["Node_For_Hash"] = None
         self.tail: Optional["Node_For_Hash"] = None
-        length: int = 0
+        self.length: int = 0
 
     def __getitem__(self, key: Any) -> Any:
-        node = self._find_hash_node(hash(key)).data_head
+        list_node = self._find_hash_node(hash(key))
+        if list_node is None:
+            return []
+        node = list_node.data_head
         data: List = []
         while node is not None:
             if node.key == key:
@@ -44,20 +47,20 @@ class DoublyLinkedList(MutableMapping):
             node = node.next
         return data
 
-    def __setitem__(self, data: Any, key: Any) -> None:
+    def __setitem__(self, key: Any, data: Any) -> None:
         node = self._find_hash_node(hash(key))
         if node is None:
             self._append_node(key)
             node = self.tail
-        data_node = node.find_value_node(data, key)
+        data_node = node.find_value_node(key, data)
         if data_node is None:
             self._append_value(node, key, data)
 
     def __delitem__(self, key: Any) -> None:
-        hash = hash(key)
+        key_hash = hash(key)
         current = self.head
         while current is not None:
-            if current.hash == hash:
+            if current.hash == key_hash:
                 if current.previous is not None:
                     current.previous.next = current.next
                 else:
@@ -71,7 +74,7 @@ class DoublyLinkedList(MutableMapping):
                 return
             current = current.next
 
-    def __iter__(self) -> Generator["Node_For_Values"]:
+    def __iter__(self) -> Generator["Node_For_Values", None, None]:
         current = self.head
         while current is not None:
             node = current.data_head
@@ -80,7 +83,7 @@ class DoublyLinkedList(MutableMapping):
                 node = node.next
             current = current.next
 
-    def __reversed__(self) -> Generator["Node_For_Values"]:
+    def __reversed__(self) -> Generator["Node_For_Values", None, None]:
         current = self.tail
         while current is not None:
             node = current.data_tail
@@ -98,14 +101,14 @@ class DoublyLinkedList(MutableMapping):
         return length
 
     def _append_value(
-        self, node_hash: Optional["Node_For_Hash"], data: Any, key: Any
+        self, node_hash: Optional["Node_For_Hash"], key: Any, data: Any
     ) -> None:
-        new_node = Node_For_Values(data, key)
+        new_node = Node_For_Values(key, data)
         if node_hash.data_tail is None:
             node_hash.data_head = new_node
             node_hash.data_tail = new_node
         else:
-            if node_hash.find_node_value(data, key) is None:
+            if node_hash.find_value_node(key, data) is None:
                 node_hash.data_tail.next = new_node
                 new_node.previous = node_hash.data_tail
                 node_hash.data_tail = new_node
@@ -123,14 +126,14 @@ class DoublyLinkedList(MutableMapping):
                 self.tail = node
 
     def _prepend_value(
-        self, node_hash: Optional["Node_For_Hash"], data: Any, key: Any
+        self, node_hash: Optional["Node_For_Hash"], key: Any, data: Any
     ) -> None:
-        new_node = Node_For_Values(data, key)
+        new_node = Node_For_Values(key, data)
         if node_hash.data_tail is None:
             node_hash.data_head = new_node
             node_hash.data_tail = new_node
         else:
-            if node_hash.find_node_value(data, key) is None:
+            if node_hash.find_node_value(key, data) is None:
                 node_hash.data_head.previous = new_node
                 new_node.next = node_hash.data_head
                 node_hash.head = new_node
@@ -152,4 +155,5 @@ class DoublyLinkedList(MutableMapping):
         while node is not None:
             if node.hash == hash:
                 return node
+            node = node.next
         return None
