@@ -199,3 +199,15 @@ def test_append_value_creates_chain(empty_table):
     empty_table._append_value(node, 2, "apple")
     assert node.data_head is not None
     assert node.data_tail is not None
+
+
+def test_contains(filled_table, empty_table):
+    """
+    Tests the functionality of the `in` operator in the DoublyLinkedList.
+    Checks for both existing and non-existing keys.
+    """
+    assert "apple" in filled_table
+    assert "banana" in filled_table
+
+    assert "cherry" not in empty_table
+    assert "orange" not in filled_table

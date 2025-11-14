@@ -209,6 +209,25 @@ class DoublyLinkedList(MutableMapping):
             current = current.next
         return length
 
+    def __contains__(self, key: Any) -> bool:
+        """
+        Checks if the given key exists in the hash table.
+
+        Arguments:
+            key (Any): The key to check for existence.
+
+        Returns:
+            bool: True if the key is in the table, False otherwise.
+        """
+        node = self._find_hash_node(hash(key))
+        if node is not None:
+            current = node.data_head
+            while current:
+                if current.key == key:
+                    return True
+                current = current.next
+        return False
+
     def _append_value(self, node_hash: "Node_For_Hash", key: Any, data: Any) -> None:
         """
         Adds a new value to the end of value list of the given hash node.
