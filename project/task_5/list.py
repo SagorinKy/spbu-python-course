@@ -52,10 +52,11 @@ class DoublyLinkedList(MutableMapping):
         if node is None:
             self._append_node(key)
             node = self.tail
-        data_node = node.find_value_node(key, data)
-        if data_node is None:
-            self._append_value(node, key, data)
-            return
+        if node is not None:
+            data_node = node.find_value_node(key, data)
+            if data_node is None:
+                self._append_value(node, key, data)
+                return
 
     def __delitem__(self, key: Any) -> None:
         key_hash = hash(key)

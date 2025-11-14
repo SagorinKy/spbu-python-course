@@ -1,12 +1,15 @@
 import pytest
-import sys
+
+"""import sys
 import os
 
 current_dir = os.path.dirname(__file__)
 project_path = os.path.join(current_dir, "..", "..", "project", "task_5")
-sys.path.insert(0, os.path.abspath(project_path))
+sys.path.insert(0, os.path.abspath(project_path))"""
 
-from list import Node_For_Hash, Node_For_Values, DoublyLinkedList
+from project.task_5.list import DoublyLinkedList
+
+# import
 
 
 @pytest.fixture
